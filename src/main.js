@@ -2,6 +2,9 @@
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 
+// global CSS
+import './assets/css/main.styl'
+
 // local
 import App from './App.vue'
 import router from './router'
