@@ -1,7 +1,11 @@
 <template>
     <div>
+      <h1>{{name}}</h1>
         <BaseLoading v-if="isLoading"/>
         <h1>Profile Index</h1>
+        <template v-if="profileData !== null">
+        <MainBlock :profileData="profileData"/>
+        </template>
     </div>
 </template>
 
@@ -11,13 +15,14 @@
 import setError from '@/mixins/setError'
 import { getApiAccount } from '@/api/search'
 import BaseLoading from '@/components/BaseLoading'
+import MainBlock from './MainBlock/Index'
 
 export default {
   name: 'ProfileView',
   mixins: [
     setError
   ],
-  components: { BaseLoading },
+  components: { BaseLoading, MainBlock },
   data () {
     return {
       isLoading: false,
@@ -25,7 +30,16 @@ export default {
     }
   },
   created () {
-    this.fetchData()
+    console.log(this.name)
+    if (this.name === '') {
+      this.fetchData()
+    }
+  },
+  props: {
+    name: {
+      type: String,
+      default: ''
+    }
   },
   methods: {
     fetchData () {

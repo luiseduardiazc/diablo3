@@ -20,7 +20,7 @@ export default {
         })
         .catch(error => {
           commit('SET_ACCESS_TOKEN', null)
-          console.log('error OAuth: ', error.message)
+          console.error('error OAuth: ', error.message)
         })
         .finally(() => {
           commit('loading/SET_LOADING', false, { root: true })
